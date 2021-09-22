@@ -2,7 +2,7 @@ from pandorinha.util import fuzzy_match, MatchStrategy
 from pandorinha.auth import get_client
 
 
-def _get_playlist(station):
+def get_playlist(station):
     for track in station.get_playlist():
         if not track.audio_url:
             continue
@@ -48,7 +48,7 @@ def search_station(query, client=None, match_func=_match_query):
         scores.append((station, score))
 
     for station, score in sorted(scores, key=lambda k: k[1], reverse=True):
-        for track in _get_playlist(station):
+        for track in get_playlist(station):
             track["match_confidence"] = _score_track(track, query,
                                                      score, match_func)
             yield track
@@ -70,7 +70,7 @@ def search_song(query, client=None, match_func=_match_query):
         scores.append((station, score))
 
     for station, score in sorted(scores, key=lambda k: k[1], reverse=True):
-        for track in _get_playlist(station):
+        for track in get_playlist(station):
             track["match_confidence"] = _score_track(track, query,
                                                      score, match_func)
             yield track
@@ -89,7 +89,7 @@ def search_artist(query, client=None, match_func=_match_query):
         scores.append((station, score))
 
     for station, score in sorted(scores, key=lambda k: k[1], reverse=True):
-        for track in _get_playlist(station):
+        for track in get_playlist(station):
             track["match_confidence"] = _score_track(track, query,
                                                      score, match_func)
             yield track

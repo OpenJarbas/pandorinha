@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="pandorinha",
-    version="0.0.1a1",
+    version="0.0.1a2",
     description="discover music",
     license="",
     author="JarbasAi",
