@@ -6,7 +6,7 @@ If you are not in the US you need to use a VPN or equivalent
 
 # Install
 
-`pip install pandorinha==0.0.1a1`
+`pip install pandorinha==0.0.1a2`
 
 # Setup
 
@@ -24,9 +24,15 @@ you need to setup pandora credentials, edit or create `~/.config/pandorinha/pand
 This is in very early stage, expect examples to get outdated and api to break!
 
 ```python
-from pandorinha.search import search
+from pandorinha import Pandora
 
-for song in search("quiet riot"):
+pandora = Pandora()
+pandora.login()
+
+for song in pandora.discover():
+    print(song)
+    
+for song in pandora.similar("quiet riot"):
     print(song)
 
 """
